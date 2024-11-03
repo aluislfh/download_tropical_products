@@ -34,7 +34,7 @@ def main():
     parser.add_argument(
         '-v', '--variable',
         required=True,
-        choices=['apcpn', 'mslp_pcpn'],
+        choices=['apcpn', 'mslp_pcpn', 'midRH', 'mslp_wind', 'wavehgt', 'z850_vort', 'ir', 'z500_vort', 'uv200', 'uv200', ''],
         help="Meteorological variable to download (e.g., 'apcpn' for accumulated precipitation, 'mslp_pcpn' for mean sea-level pressure and precipitation)."
     )
     
@@ -42,7 +42,7 @@ def main():
     parser.add_argument(
         '-r', '--region',
         required=True,
-        choices=['watl'],
+        choices=['watl', 'us'],
         help="Geographical region. Currently, only 'watl' (Western Atlantic) is supported."
     )
     
