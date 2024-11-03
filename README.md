@@ -1,5 +1,3 @@
-Aquí tienes un archivo `README.md` detallado para tu proyecto, siguiendo la estructura del proyecto y proporcionando una descripción completa de las opciones y cómo usar el código.
-
 ```markdown
 # Download Tropical Forecast Products
 
