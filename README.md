@@ -1,4 +1,7 @@
+<<<<<<< HEAD
+=======
 ```markdown
+>>>>>>> origin/main
 # Download Tropical Forecast Products
 
 ## About
@@ -89,7 +92,7 @@ Contributions are welcome! Please submit a pull request or open an issue to disc
 ## License
 
 This project is licensed under the MIT License. See the [LICENSE](LICENSE) file for details.
-```
+
 
 ### Key Points in the README
 
