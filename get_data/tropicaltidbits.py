@@ -24,9 +24,37 @@ BASE_URLS = {
     'nam': "https://www.tropicaltidbits.com/analysis/models/nam/{date}/nam_{variable}_{region}_{step}.png"
 }
 
+def file_exists_and_complete(url, path, headers):
+    """
+    Check if the file at 'path' exists and matches the content length of the file at 'url'.
+    
+    Parameters:
+        url (str): The URL of the image to check.
+        path (str): The file path to check.
+        headers (dict): Headers to use for the request.
+    
+    Returns:
+        bool: True if the file exists and matches the content length; False otherwise.
+    """
+    if not os.path.exists(path):
+        return False
+    
+    # Get the content length from the server
+    response = requests.head(url, headers=headers)
+    if response.status_code == 200:
+        content_length = int(response.headers.get('Content-Length', 0))
+        file_size = os.path.getsize(path)
+        if file_size == content_length:
+            print(f"File {path} already exists and is complete.")
+            return True
+    else:
+        print(f"Could not retrieve headers for {url}. HTTP Status Code: {response.status_code}")
+    
+    return False
+
 def download_image(url, path):
     """
-    Downloads an image from a specified URL and saves it to the given path.
+    Downloads an image from a specified URL and saves it to the given path if it doesn't already exist.
     
     Parameters:
         url (str): The URL of the image to download.
@@ -36,6 +64,12 @@ def download_image(url, path):
         'User-Agent': 'Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/87.0.4280.88 Safari/537.36',
         'Referer': 'https://www.tropicaltidbits.com/'
     }
+    
+    # Check if file exists and matches the server file size
+    if file_exists_and_complete(url, path, headers):
+        print(f"Skipping download for {url} as the file already exists and is complete.")
+        return
+
     print(f"Attempting to download: {url}")  # Debug print
     try:
         response = requests.get(url, headers=headers, stream=True)
