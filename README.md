@@ -1,7 +1,3 @@
-<<<<<<< HEAD
-=======
-```markdown
->>>>>>> origin/main
 # Download Tropical Forecast Products
 
 ## About
